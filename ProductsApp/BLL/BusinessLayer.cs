@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using ProductsApp.DAL;
+using System.IO;
 
 namespace ProductsApp.BLL
 {
@@ -13,7 +14,7 @@ namespace ProductsApp.BLL
     {
         
         Product product=new Product();
-        DataLayer dataLayer=new DataLayer();
+        public DataLayer dataLayer=new DataLayer();
         public List<Product> productList = new List<Product>();
         //private List<Product> productList = new List<Product>();    
 
@@ -101,7 +102,7 @@ namespace ProductsApp.BLL
                     productPrice = productPrice,
                     productRating = productRating
                 };
-                dataLayer.BinarySerialization(productId, productName, productQuantity, productPrice, productRating);
+                //dataLayer.BinarySerialization(productId, productName, productQuantity, productPrice, productRating);
 
             }
             catch (Exception e) { Console.WriteLine(e.Message); }
@@ -109,7 +110,7 @@ namespace ProductsApp.BLL
 
         public void deleteProduct(int id)
         {
-            dataLayer.BinaryDeSerialization();
+            //dataLayer.BinaryDeSerialization();
             try
             {
                 Product productToDelete = productList.Find(p => p.pId == id);
@@ -184,6 +185,24 @@ namespace ProductsApp.BLL
             }
             catch (Exception e) { Console.WriteLine(e.Message); }
 
+        }
+
+        public List<Product> deserializeProductDetails()
+        {
+            try
+            {
+                if (File.Exists(Directory.GetCurrentDirectory() + @"\Product.txt"))
+                {
+                    return dataLayer.deserializeProductDetails();
+                    //return null;
+                }
+                return null;
+
+                
+            }
+            catch(Exception e) { //Console.WriteLine(e.Message);
+            return null;
+            }
         }
 
     }

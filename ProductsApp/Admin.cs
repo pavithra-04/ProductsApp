@@ -19,13 +19,7 @@ namespace ProductsApp
         public int productId, productQuantity, productRating;
         public double productPrice;
 
-        //public Admin(int productId, string productName,int productQuantity, decimal productPrice, int productRating) { 
-        //    productId=productId;
-        //    productName = productName;
-        //    productQuantity = productQuantity;
-        //    productPrice = productPrice;
-        //    productRating = productRating;       
-        //}
+        
         public void adminRole()
         {
             try
